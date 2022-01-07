@@ -125,10 +125,6 @@ const cssSelectorBuilder = {
     throw new Error('Not implemented');
   },
 
-  // stringify() {
-  //   return JSON.stringify(this.element);
-  // },
-
   id(/* value */) {
     // return value;
     throw new Error('Not implemented');
