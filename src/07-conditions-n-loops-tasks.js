@@ -460,8 +460,26 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const rowsM1 = m1.length;
+  const colsM1 = m1[0].length;
+  const rowsM2 = m2.length;
+  const colsM2 = m2[0].length;
+  const m3 = [];
+  if (colsM1 !== rowsM2) return false;
+  for (let i = 0; i < rowsM1; i += 1) {
+    m3[i] = [];
+  }
+  for (let k = 0; k < colsM2; k += 1) {
+    for (let l = 0; l < rowsM1; l += 1) {
+      let t = 0;
+      for (let j = 0; j < rowsM2; j += 1) {
+        t += m1[l][j] * m2[j][k];
+        m3[l][k] = t;
+      }
+    }
+  }
+  return m3;
 }
 
 
@@ -495,8 +513,34 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  let cross = '';
+  let reverseCross = '';
+  for (let i = 0; i < 3; i += 1) {
+    if (position[i].join('') === 'XXX' || position[i].join('') === '000') {
+      return position[i][0];
+    }
+    let col = '';
+    for (let j = 0; j < 3; j += 1) {
+      col += position[j][i];
+      if (i === j) {
+        cross += position[i][j];
+      }
+      if (2 - i === j) {
+        reverseCross += position[i][j];
+      }
+    }
+    if (col === 'XXX' || col === '000') {
+      return col[0];
+    }
+    if (cross === 'XXX' || cross === '000') {
+      return cross[0];
+    }
+    if (reverseCross === 'XXX' || reverseCross === '000') {
+      return reverseCross[0];
+    }
+  }
+  return undefined;
 }
 
 
